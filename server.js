@@ -11,8 +11,8 @@ app.post('/chat', async (req, res) => {
     console.log(`Received message: ${userMessage}`);
 
     try {
-        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-            model: "gpt-3.5-turbo",
+        const response = await axios.post('https://api.openai.com/v1/assistants/asst_MQwNENIv3K9dKG8Ak6QfNVxe/completions', {
+            model: "gpt-3.5-turbo", // Use the correct model
             messages: [{ role: "user", content: userMessage }]
         }, {
             headers: {
