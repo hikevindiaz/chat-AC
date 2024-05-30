@@ -8,10 +8,11 @@ app.use(bodyParser.json());
 
 app.post('/chat', async (req, res) => {
     const userMessage = req.body.message;
+    console.log(`Received message: ${userMessage}`);
 
     try {
         const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-            model: "gpt-3.5-turbo", // Use the correct model
+            model: "gpt-3.5-turbo",
             messages: [{ role: "user", content: userMessage }]
         }, {
             headers: {
@@ -19,9 +20,10 @@ app.post('/chat', async (req, res) => {
             }
         });
 
+        console.log(`Response from OpenAI: ${JSON.stringify(response.data)}`);
         res.json(response.data);
     } catch (error) {
-        console.error(error);
+        console.error(`Error with the chat service: ${error}`);
         res.status(500).send('Error with the chat service');
     }
 });
