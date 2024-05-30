@@ -11,12 +11,14 @@ app.post('/chat', async (req, res) => {
     console.log(`Received message: ${userMessage}`);
 
     try {
-        const response = await axios.post(`https://api.openai.com/v1/assistants/asst_MQwNENIv3K9dKG8Ak6QfNVxe/`, {
+        const response = await axios.post('https://api.openai.com/v1/assistants/asst_MQwNENIv3K9dKG8Ak6QfNVxe', {
+            model: "gpt-3.5-turbo",
             messages: [{ role: "user", content: userMessage }]
         }, {
             headers: {
                 'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'OpenAI-Beta': 'assistants=v2'
             }
         });
 
