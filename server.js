@@ -11,12 +11,12 @@ app.post('/chat', async (req, res) => {
     console.log(`Received message: ${userMessage}`);
 
     try {
-        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-            model: "asst_MQwNENIv3K9dKG8Ak6QfNVxe", // Use your Assistant's model ID
+        const response = await axios.post(`https://api.openai.com/v1/assistants/asst_MQwNENIv3K9dKG8Ak6QfNVxe/completions`, {
             messages: [{ role: "user", content: userMessage }]
         }, {
             headers: {
-                'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
+                'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
+                'Content-Type': 'application/json'
             }
         });
 
