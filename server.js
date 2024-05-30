@@ -11,7 +11,7 @@ app.post('/chat', async (req, res) => {
     console.log(`Received message: ${userMessage}`);
 
     try {
-        const response = await axios.post(`https://api.openai.com/v1/assistants/asst_MQwNENIv3K9dKG8Ak6QfNVxe/completions`, {
+        const response = await axios.post(`https://api.openai.com/v1/assistants/asst_MQwNENIv3K9dKG8Ak6QfNVxe/`, {
             messages: [{ role: "user", content: userMessage }]
         }, {
             headers: {
